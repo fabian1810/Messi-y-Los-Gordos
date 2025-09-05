@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Reservas - Messi y los Gordos</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <div class="logo-icon">🍽️</div>
+                <div class="logo-text">
+                    <h1>Messi y los Gordos</h1>
+                    <p>Sistema de Reservas</p>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <!-- Formulario de Reserva -->
+            <section class="reservation-form">
+                <h2>Hacer una Reserva</h2>
+                <form id="reservationForm">
+                    <div class="form-group">
+                        <label for="clientName">Nombre del Cliente:</label>
+                        <input type="text" id="clientName" name="clientName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Fecha:</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="time">Hora:</label>
+                        <input type="time" id="time" name="time" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="people">Número de Personas:</label>
+                        <input type="number" id="people" name="people" min="1" max="10" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="table">Selección de Mesa:</label>
+                        <select id="table" name="table" required>
+                            <option value="">Selecciona una mesa</option>
+                            <option value="Mesa 1">Mesa 1</option>
+                            <option value="Mesa 2">Mesa 2</option>
+                            <option value="Mesa 3">Mesa 3</option>
+                            <option value="Mesa 4">Mesa 4</option>
+                            <option value="Mesa 5">Mesa 5</option>
+                            <option value="Mesa 6">Mesa 6</option>
+                        </select>
+                    </div>
+
+                    <div class="form-buttons">
+                        <button type="submit" class="btn-reserve">Reservar</button>
+                        <button type="button" class="btn-cancel-edit" onclick="reservationManager.cancelEdit()" style="display: none;">
+                            ❌ Cancelar Edición
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <!-- Sección de Mensajes -->
+            <section class="messages">
+                <h2>Mensajes</h2>
+                <div id="messageContainer" class="message-container">
+                    <!-- Los mensajes se mostrarán aquí -->
+                </div>
+            </section>
+
+            <!-- Lista de Reservas -->
+            <section class="reservations-list">
+                <div class="reservations-header">
+                    <h2>Reservas Registradas</h2>
+                    <button class="stats-btn" onclick="showReservationStats()" title="Ver estadísticas">
+                        📊 Estadísticas
+                    </button>
+                </div>
+                <div id="reservationsContainer" class="reservations-container">
+                    <!-- Las reservas se mostrarán aquí -->
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 Messi y los Gordos
+                Todos los derechos reservados de Restaurant tycoon 3.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
