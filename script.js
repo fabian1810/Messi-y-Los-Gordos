@@ -153,10 +153,10 @@ class ReservationManager {
                     message = 'La hora es obligatoria';
                 } else {
                     const [hours] = value.split(':').map(Number);
-                    if (hours < 8 || hours > 22) {
-                        isValid = false;
-                        message = 'Horario: 8:00 AM - 10:00 PM';
-                    }
+                                    if (hours < 7 || hours > 22) {
+                    isValid = false;
+                    message = 'Horario: 7:00 AM - 10:00 PM';
+                }
                 }
                 break;
             case 'people':
@@ -221,14 +221,14 @@ class ReservationManager {
             // Validar la reserva
             const validation = this.validateReservation(reservation);
             
-            if (validation.isValid) {
-                this.addReservation(reservation);
-                this.showMessage('✅ Reserva registrada exitosamente', 'success');
-                this.form.reset();
-                this.animateSuccess();
-            } else {
-                this.showMessage(validation.message, 'error');
-            }
+                    if (validation.isValid) {
+            this.addReservation(reservation);
+            this.showMessage('🌿 ¡Reserva confirmada! Te esperamos en GreenFit Bistro', 'success');
+            this.form.reset();
+            this.animateSuccess();
+        } else {
+            this.showMessage(validation.message, 'error');
+        }
             
             this.hideLoading();
         }, 1500);
@@ -239,7 +239,7 @@ class ReservationManager {
         const submitBtn = this.form.querySelector('.btn-reserve');
         const originalText = submitBtn.innerHTML;
         
-        submitBtn.innerHTML = '<i class="fas fa-check"></i><span>¡Reservado!</span>';
+        submitBtn.innerHTML = '<i class="fas fa-leaf"></i><span>¡Confirmado!</span>';
         submitBtn.style.background = 'var(--success-gradient)';
         
         setTimeout(() => {
@@ -302,10 +302,10 @@ class ReservationManager {
         const selectedTime = reservation.time;
         const [hours, minutes] = selectedTime.split(':').map(Number);
         
-        if (hours < 8 || hours > 22) {
+        if (hours < 7 || hours > 22) {
             return {
                 isValid: false,
-                message: '❌ El horario de reservas es de 8:00 AM a 10:00 PM'
+                message: '❌ El horario de reservas es de 7:00 AM a 10:00 PM'
             };
         }
 
@@ -629,7 +629,7 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Mostrar mensaje de bienvenida
     setTimeout(() => {
-        window.reservationManager.showMessage('🎉 ¡Bienvenido al sistema de reservas!', 'info');
+        window.reservationManager.showMessage('🌿 ¡Bienvenido a GreenFit Bistro! Disfruta de nuestra comida saludable', 'info');
     }, 500);
 });
 
@@ -775,6 +775,39 @@ function showSystemNotification(message, type = 'info') {
             }, 300);
         }
     }, 5000);
+}
+
+// Función para mostrar información del restaurante
+function showRestaurantInfo() {
+    const infoMessage = `
+        🌿 GreenFit Bistro - Información:
+        • Comida 100% orgánica y saludable
+        • Ingredientes frescos y locales
+        • Opciones veganas y vegetarianas
+        • Sin conservantes artificiales
+        • Menú bajo en calorías
+        • Ambiente relajado y moderno
+        • WiFi gratuito
+        • Estacionamiento disponible
+    `;
+    
+    window.reservationManager.showMessage(infoMessage, 'info');
+}
+
+// Función para mostrar beneficios de la comida fit
+function showHealthBenefits() {
+    const benefitsMessage = `
+        💪 Beneficios de Nuestra Comida:
+        • Aumenta tu energía naturalmente
+        • Mejora tu digestión
+        • Fortalece tu sistema inmunológico
+        • Ayuda a mantener un peso saludable
+        • Reduce el riesgo de enfermedades
+        • Mejora tu concentración
+        • Te hace sentir más liviano y activo
+    `;
+    
+    window.reservationManager.showMessage(benefitsMessage, 'info');
 }
 
 // Añadir estilos CSS para las notificaciones toast

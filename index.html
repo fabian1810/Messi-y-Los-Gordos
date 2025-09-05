@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Reservas - Messi y los Gordos</title>
+    <title>Sistema de Reservas - GreenFit Bistro</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -24,18 +24,26 @@
         <header class="modern-header">
             <div class="logo-container">
                 <div class="logo-icon">
-                    <i class="fas fa-utensils"></i>
+                    <i class="fas fa-leaf"></i>
                 </div>
                 <div class="logo-text">
-                    <h1>Messi y los Gordos</h1>
-                    <p class="subtitle">Sistema de Reservas Premium</p>
+                    <h1>GreenFit Bistro</h1>
+                    <p class="subtitle">Comida Saludable & Deliciosa</p>
                     <div class="status-indicator">
                         <span class="status-dot"></span>
-                        <span class="status-text">Sistema Activo</span>
+                        <span class="status-text">Abierto - 7:00 AM - 10:00 PM</span>
                     </div>
                 </div>
             </div>
             <div class="header-actions">
+                <button class="action-btn" onclick="showRestaurantInfo()">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Info</span>
+                </button>
+                <button class="action-btn" onclick="showHealthBenefits()">
+                    <i class="fas fa-heart"></i>
+                    <span>Beneficios</span>
+                </button>
                 <button class="action-btn" onclick="showReservationStats()">
                     <i class="fas fa-chart-line"></i>
                     <span>Estadísticas</span>
@@ -51,8 +59,8 @@
             <!-- Formulario de Reserva -->
             <section class="reservation-form glass-card">
                 <div class="form-header">
-                    <h2><i class="fas fa-calendar-plus"></i> Nueva Reserva</h2>
-                    <p class="form-description">Complete los datos para realizar una reserva</p>
+                    <h2><i class="fas fa-calendar-plus"></i> Reserva tu Mesa</h2>
+                    <p class="form-description">Disfruta de nuestra deliciosa comida saludable</p>
                 </div>
                 
                 <form id="reservationForm" class="modern-form">
@@ -121,12 +129,12 @@
                             <div class="input-container">
                                 <select id="table" name="table" required>
                                     <option value="">Selecciona una mesa</option>
-                                    <option value="Mesa 1">🍽️ Mesa 1 - Vista al jardín</option>
-                                    <option value="Mesa 2">🪟 Mesa 2 - Ventana</option>
-                                    <option value="Mesa 3">🕯️ Mesa 3 - Romántica</option>
-                                    <option value="Mesa 4">👥 Mesa 4 - Familiar</option>
-                                    <option value="Mesa 5">💼 Mesa 5 - Ejecutiva</option>
-                                    <option value="Mesa 6">🎉 Mesa 6 - Grupal</option>
+                                    <option value="Mesa Verde">🌿 Mesa Verde - Terraza Natural</option>
+                                    <option value="Mesa Fit">💪 Mesa Fit - Zona Fitness</option>
+                                    <option value="Mesa Zen">🧘 Mesa Zen - Ambiente Relajado</option>
+                                    <option value="Mesa Fresh">🥗 Mesa Fresh - Vista al Jardín</option>
+                                    <option value="Mesa Vital">⚡ Mesa Vital - Energía Natural</option>
+                                    <option value="Mesa Pure">✨ Mesa Pure - Espacio Premium</option>
                                 </select>
                                 <div class="input-icon">
                                     <i class="fas fa-table"></i>
@@ -146,6 +154,106 @@
                         </button>
                     </div>
                 </form>
+            </section>
+
+            <!-- Sección de Menú -->
+            <section class="menu-section glass-card">
+                <div class="menu-header">
+                    <h2><i class="fas fa-utensils"></i> Nuestro Menú Fit</h2>
+                    <p class="menu-description">Platos saludables y deliciosos para tu bienestar</p>
+                </div>
+                
+                <div class="menu-categories">
+                    <div class="menu-category">
+                        <h3><i class="fas fa-sun"></i> Desayunos Energéticos</h3>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <h4>Bowl de Açaí Fit</h4>
+                                    <p>Açaí, granola, frutas frescas y miel natural</p>
+                                    <span class="calories">320 cal</span>
+                                </div>
+                                <span class="price">$12.99</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <h4>Avocado Toast Premium</h4>
+                                    <p>Pan integral, aguacate, tomate cherry y semillas</p>
+                                    <span class="calories">280 cal</span>
+                                </div>
+                                <span class="price">$9.99</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <h4>Smoothie Verde Power</h4>
+                                    <p>Espinaca, plátano, mango y proteína vegetal</p>
+                                    <span class="calories">180 cal</span>
+                                </div>
+                                <span class="price">$7.99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-category">
+                        <h3><i class="fas fa-leaf"></i> Ensaladas Frescas</h3>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <h4>Ensalada Quinoa Power</h4>
+                                    <p>Quinoa, aguacate, tomate, pepino y aderezo fit</p>
+                                    <span class="calories">350 cal</span>
+                                </div>
+                                <span class="price">$14.99</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <h4>Caesar Fit</h4>
+                                    <p>Lechuga romana, pollo grill, parmesano y crutones integrales</p>
+                                    <span class="calories">420 cal</span>
+                                </div>
+                                <span class="price">$16.99</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <h4>Mediterránea Fresh</h4>
+                                    <p>Tomate, mozzarella, albahaca y aceite de oliva extra virgen</p>
+                                    <span class="calories">290 cal</span>
+                                </div>
+                                <span class="price">$13.99</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="menu-category">
+                        <h3><i class="fas fa-fire"></i> Platos Principales</h3>
+                        <div class="menu-items">
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <h4>Salmón Teriyaki Fit</h4>
+                                    <p>Salmón grill, arroz integral, brócoli y salsa teriyaki light</p>
+                                    <span class="calories">480 cal</span>
+                                </div>
+                                <span class="price">$22.99</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <h4>Pollo a la Plancha</h4>
+                                    <p>Pechuga de pollo, quinoa, espinacas y tomates cherry</p>
+                                    <span class="calories">380 cal</span>
+                                </div>
+                                <span class="price">$18.99</span>
+                            </div>
+                            <div class="menu-item">
+                                <div class="item-info">
+                                    <h4>Bowl Buddha</h4>
+                                    <p>Vegetales asados, garbanzos, tahini y granos antiguos</p>
+                                    <span class="calories">420 cal</span>
+                                </div>
+                                <span class="price">$19.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <!-- Sección de Mensajes -->
@@ -187,21 +295,22 @@
             <div class="footer-content">
                 <div class="footer-left">
                     <div class="footer-logo">
-                        <i class="fas fa-utensils"></i>
-                        <span>Messi y los Gordos</span>
+                        <i class="fas fa-leaf"></i>
+                        <span>GreenFit Bistro</span>
                     </div>
-                    <p>Sistema de Reservas Premium</p>
+                    <p>Comida Saludable & Deliciosa</p>
                 </div>
                 <div class="footer-right">
                     <div class="footer-info">
-                        <p><i class="fas fa-clock"></i> Horario: 8:00 AM - 10:00 PM</p>
+                        <p><i class="fas fa-clock"></i> Horario: 7:00 AM - 10:00 PM</p>
                         <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                        <p><i class="fas fa-envelope"></i> reservas@messilosgordos.com</p>
+                        <p><i class="fas fa-envelope"></i> reservas@greenfitbistro.com</p>
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Wellness Street, Health City</p>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 Messi y los Gordos. Todos los derechos reservados.</p>
+                <p>&copy; 2024 GreenFit Bistro. Todos los derechos reservados.</p>
                 <div class="footer-links">
                     <a href="#"><i class="fas fa-shield-alt"></i> Privacidad</a>
                     <a href="#"><i class="fas fa-file-contract"></i> Términos</a>

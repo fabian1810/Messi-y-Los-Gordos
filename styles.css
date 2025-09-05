@@ -6,13 +6,15 @@
 }
 
 :root {
-    /* Modern Color Palette */
-    --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    /* Healthy & Fit Color Palette */
+    --primary-gradient: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+    --secondary-gradient: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
     --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     --success-gradient: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-    --warning-gradient: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    --warning-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
     --danger-gradient: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+    --healthy-gradient: linear-gradient(135deg, #a8e6cf 0%, #dcedc1 100%);
+    --fresh-gradient: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
     
     /* Glass Effect Colors */
     --glass-bg: rgba(255, 255, 255, 0.1);
@@ -26,9 +28,9 @@
     --text-white: #ffffff;
     
     /* Background Colors */
-    --bg-primary: #0f0f23;
-    --bg-secondary: #1a1a2e;
-    --bg-tertiary: #16213e;
+    --bg-primary: #0d2818;
+    --bg-secondary: #1a3d2e;
+    --bg-tertiary: #2d5a3d;
     
     /* Spacing */
     --spacing-xs: 0.25rem;
@@ -268,7 +270,7 @@ body {
 /* Main Content */
 .main-content {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--spacing-2xl);
     margin-bottom: var(--spacing-2xl);
 }
@@ -864,13 +866,115 @@ body {
     background: rgba(255, 255, 255, 0.5);
 }
 
+/* Menu Section Styles */
+.menu-header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.menu-header h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-white);
+    margin-bottom: var(--spacing-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.menu-description {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.1rem;
+}
+
+.menu-categories {
+    display: grid;
+    gap: var(--spacing-2xl);
+}
+
+.menu-category {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-xl);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-category h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-white);
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.menu-items {
+    display: grid;
+    gap: var(--spacing-lg);
+}
+
+.menu-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-lg);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.menu-item:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.item-info h4 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--text-white);
+    margin-bottom: var(--spacing-xs);
+}
+
+.item-info p {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.4;
+}
+
+.calories {
+    background: var(--fresh-gradient);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.8rem;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--text-white);
+    background: var(--primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
 /* Selection styles */
 ::selection {
-    background: rgba(79, 172, 254, 0.3);
+    background: rgba(86, 171, 47, 0.3);
     color: white;
 }
 
 ::-moz-selection {
-    background: rgba(79, 172, 254, 0.3);
+    background: rgba(86, 171, 47, 0.3);
     color: white;
 }
