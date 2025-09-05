@@ -5,9 +5,14 @@ class ReservationManager {
         this.form = document.getElementById('reservationForm');
         this.messageContainer = document.getElementById('messageContainer');
         this.reservationsContainer = document.getElementById('reservationsContainer');
+        this.messageCount = document.getElementById('messageCount');
+        this.reservationCount = document.getElementById('reservationCount');
+        this.loadingOverlay = document.getElementById('loadingOverlay');
         
         this.initializeEventListeners();
         this.displayReservations();
+        this.updateCounters();
+        this.initializeAnimations();
     }
 
     // Inicializar event listeners
@@ -21,6 +26,88 @@ class ReservationManager {
         
         // Validaciones en tiempo real
         this.setupRealTimeValidation();
+        
+        // Efectos de hover en inputs
+        this.setupInputEffects();
+    }
+
+    // Inicializar animaciones
+    initializeAnimations() {
+        // Animar elementos al cargar
+        this.animateOnLoad();
+        
+        // Efectos de parallax suave
+        this.setupParallaxEffect();
+    }
+
+    // Animar elementos al cargar
+    animateOnLoad() {
+        const cards = document.querySelectorAll('.glass-card');
+        cards.forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            
+            setTimeout(() => {
+                card.style.transition = 'all 0.6s ease';
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, index * 200);
+        });
+    }
+
+    // Efecto parallax suave
+    setupParallaxEffect() {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    }
+
+    // Efectos en inputs
+    setupInputEffects() {
+        const inputs = this.form.querySelectorAll('input, select');
+        
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('focused');
+            });
+            
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('focused');
+            });
+        });
+    }
+
+    // Actualizar contadores
+    updateCounters() {
+        if (this.messageCount) {
+            const messageElements = this.messageContainer.children;
+            this.messageCount.textContent = messageElements.length;
+        }
+        
+        if (this.reservationCount) {
+            const count = this.reservations.length;
+            this.reservationCount.textContent = `${count} reserva${count !== 1 ? 's' : ''}`;
+        }
+    }
+
+    // Mostrar loading
+    showLoading() {
+        if (this.loadingOverlay) {
+            this.loadingOverlay.style.display = 'flex';
+        }
+    }
+
+    // Ocultar loading
+    hideLoading() {
+        if (this.loadingOverlay) {
+            this.loadingOverlay.style.display = 'none';
+        }
     }
 
     // Configurar validaciones en tiempo real
@@ -116,27 +203,49 @@ class ReservationManager {
     handleFormSubmit(e) {
         e.preventDefault();
         
-        const formData = new FormData(this.form);
-        const reservation = {
-            id: Date.now(),
-            clientName: formData.get('clientName').trim(),
-            date: formData.get('date'),
-            time: formData.get('time'),
-            people: parseInt(formData.get('people')),
-            table: formData.get('table'),
-            createdAt: new Date().toISOString()
-        };
-
-        // Validar la reserva
-        const validation = this.validateReservation(reservation);
+        this.showLoading();
         
-        if (validation.isValid) {
-            this.addReservation(reservation);
-            this.showMessage('✅ Reserva registrada exitosamente', 'success');
-            this.form.reset();
-        } else {
-            this.showMessage(validation.message, 'error');
-        }
+        // Simular procesamiento
+        setTimeout(() => {
+            const formData = new FormData(this.form);
+            const reservation = {
+                id: Date.now(),
+                clientName: formData.get('clientName').trim(),
+                date: formData.get('date'),
+                time: formData.get('time'),
+                people: parseInt(formData.get('people')),
+                table: formData.get('table'),
+                createdAt: new Date().toISOString()
+            };
+
+            // Validar la reserva
+            const validation = this.validateReservation(reservation);
+            
+            if (validation.isValid) {
+                this.addReservation(reservation);
+                this.showMessage('✅ Reserva registrada exitosamente', 'success');
+                this.form.reset();
+                this.animateSuccess();
+            } else {
+                this.showMessage(validation.message, 'error');
+            }
+            
+            this.hideLoading();
+        }, 1500);
+    }
+
+    // Animación de éxito
+    animateSuccess() {
+        const submitBtn = this.form.querySelector('.btn-reserve');
+        const originalText = submitBtn.innerHTML;
+        
+        submitBtn.innerHTML = '<i class="fas fa-check"></i><span>¡Reservado!</span>';
+        submitBtn.style.background = 'var(--success-gradient)';
+        
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.style.background = '';
+        }, 2000);
     }
 
     // Validar la reserva
@@ -222,14 +331,43 @@ class ReservationManager {
         this.reservations.push(reservation);
         this.saveReservations();
         this.displayReservations();
+        this.updateCounters();
+        this.animateNewReservation();
+    }
+
+    // Animar nueva reserva
+    animateNewReservation() {
+        const rows = this.reservationsContainer.querySelectorAll('tbody tr');
+        if (rows.length > 0) {
+            const newRow = rows[rows.length - 1];
+            newRow.style.opacity = '0';
+            newRow.style.transform = 'translateX(-50px)';
+            
+            setTimeout(() => {
+                newRow.style.transition = 'all 0.5s ease';
+                newRow.style.opacity = '1';
+                newRow.style.transform = 'translateX(0)';
+            }, 100);
+        }
     }
 
     // Eliminar una reserva
     deleteReservation(id) {
-        this.reservations = this.reservations.filter(r => r.id !== id);
-        this.saveReservations();
-        this.displayReservations();
-        this.showMessage('🗑️ Reserva cancelada exitosamente', 'info');
+        // Animar eliminación
+        const row = document.querySelector(`[data-reservation-id="${id}"]`);
+        if (row) {
+            row.style.transition = 'all 0.3s ease';
+            row.style.opacity = '0';
+            row.style.transform = 'translateX(50px)';
+            
+            setTimeout(() => {
+                this.reservations = this.reservations.filter(r => r.id !== id);
+                this.saveReservations();
+                this.displayReservations();
+                this.updateCounters();
+                this.showMessage('🗑️ Reserva cancelada exitosamente', 'info');
+            }, 300);
+        }
     }
 
     // Editar una reserva
@@ -376,7 +514,7 @@ class ReservationManager {
                         const formattedTime = this.formatTime(reservation.time);
                         
                         return `
-                            <tr>
+                            <tr data-reservation-id="${reservation.id}">
                                 <td><strong>${reservation.clientName}</strong></td>
                                 <td>${formattedDate}</td>
                                 <td>${formattedTime}</td>
@@ -385,10 +523,10 @@ class ReservationManager {
                                 <td>
                                     <div class="action-buttons">
                                         <button class="edit-btn" onclick="reservationManager.editReservation(${reservation.id})" title="Editar esta reserva">
-                                            ✏️ Editar
+                                            <i class="fas fa-edit"></i> Editar
                                         </button>
                                         <button class="delete-btn" onclick="reservationManager.deleteReservation(${reservation.id})" title="Cancelar esta reserva">
-                                            🗑️ Cancelar
+                                            <i class="fas fa-trash"></i> Cancelar
                                         </button>
                                     </div>
                                 </td>
@@ -404,16 +542,53 @@ class ReservationManager {
     showMessage(message, type = 'info') {
         const messageElement = document.createElement('div');
         messageElement.className = `message ${type}`;
-        messageElement.textContent = message;
+        messageElement.innerHTML = `
+            <div class="message-content">
+                <i class="fas fa-${this.getMessageIcon(type)}"></i>
+                <span>${message}</span>
+            </div>
+        `;
+        
+        // Animar entrada
+        messageElement.style.opacity = '0';
+        messageElement.style.transform = 'translateY(-20px)';
         
         this.messageContainer.appendChild(messageElement);
+        this.updateCounters();
+        
+        // Animar aparición
+        setTimeout(() => {
+            messageElement.style.transition = 'all 0.3s ease';
+            messageElement.style.opacity = '1';
+            messageElement.style.transform = 'translateY(0)';
+        }, 100);
         
         // Eliminar el mensaje después de 5 segundos
         setTimeout(() => {
             if (messageElement.parentNode) {
-                messageElement.parentNode.removeChild(messageElement);
+                messageElement.style.transition = 'all 0.3s ease';
+                messageElement.style.opacity = '0';
+                messageElement.style.transform = 'translateY(-20px)';
+                
+                setTimeout(() => {
+                    if (messageElement.parentNode) {
+                        messageElement.parentNode.removeChild(messageElement);
+                        this.updateCounters();
+                    }
+                }, 300);
             }
         }, 5000);
+    }
+
+    // Obtener icono del mensaje
+    getMessageIcon(type) {
+        const icons = {
+            success: 'check-circle',
+            error: 'exclamation-circle',
+            info: 'info-circle',
+            warning: 'exclamation-triangle'
+        };
+        return icons[type] || 'info-circle';
     }
 
     // Formatear fecha
@@ -492,12 +667,165 @@ function showReservationStats() {
     // Calcular total de personas
     const totalPeople = reservations.reduce((sum, r) => sum + r.people, 0);
     
+    // Calcular promedio de personas por reserva
+    const avgPeople = (totalPeople / totalReservations).toFixed(1);
+    
+    // Reservas por día de la semana
+    const dayStats = {};
+    reservations.forEach(r => {
+        const day = new Date(r.date).toLocaleDateString('es-ES', { weekday: 'long' });
+        dayStats[day] = (dayStats[day] || 0) + 1;
+    });
+    
+    const busiestDay = Object.keys(dayStats).reduce((a, b) => 
+        dayStats[a] > dayStats[b] ? a : b
+    );
+    
     const statsMessage = `
-        📊 Estadísticas de Reservas:
+        📊 Estadísticas Detalladas:
         • Total de reservas: ${totalReservations}
         • Total de personas: ${totalPeople}
+        • Promedio por reserva: ${avgPeople} personas
         • Mesa más popular: ${mostPopularTable} (${tableStats[mostPopularTable]} reservas)
+        • Día más ocupado: ${busiestDay} (${dayStats[busiestDay]} reservas)
     `;
     
     window.reservationManager.showMessage(statsMessage, 'info');
 }
+
+// Función para exportar reservas
+function exportReservations() {
+    const reservations = window.reservationManager.reservations;
+    
+    if (reservations.length === 0) {
+        window.reservationManager.showMessage('📄 No hay reservas para exportar', 'info');
+        return;
+    }
+    
+    // Crear CSV
+    const headers = ['Cliente', 'Fecha', 'Hora', 'Personas', 'Mesa', 'Fecha de Creación'];
+    const csvContent = [
+        headers.join(','),
+        ...reservations.map(r => [
+            `"${r.clientName}"`,
+            r.date,
+            r.time,
+            r.people,
+            `"${r.table}"`,
+            new Date(r.createdAt).toLocaleString('es-ES')
+        ].join(','))
+    ].join('\n');
+    
+    // Descargar archivo
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `reservas_${new Date().toISOString().split('T')[0]}.csv`);
+    link.style.visibility = 'hidden';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    window.reservationManager.showMessage('📄 Reservas exportadas exitosamente', 'success');
+}
+
+// Función para mostrar notificaciones del sistema
+function showSystemNotification(message, type = 'info') {
+    // Crear notificación toast
+    const notification = document.createElement('div');
+    notification.className = `toast-notification ${type}`;
+    notification.innerHTML = `
+        <div class="toast-content">
+            <i class="fas fa-${window.reservationManager.getMessageIcon(type)}"></i>
+            <span>${message}</span>
+            <button class="toast-close" onclick="this.parentElement.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    // Posicionar en la esquina superior derecha
+    notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+        background: var(--glass-bg);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-lg);
+        padding: var(--spacing-lg);
+        box-shadow: var(--shadow-xl);
+        color: white;
+        max-width: 400px;
+        animation: slideInRight 0.3s ease;
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Auto-remove después de 5 segundos
+    setTimeout(() => {
+        if (notification.parentNode) {
+            notification.style.animation = 'slideOutRight 0.3s ease';
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.remove();
+                }
+            }, 300);
+        }
+    }, 5000);
+}
+
+// Añadir estilos CSS para las notificaciones toast
+const toastStyles = document.createElement('style');
+toastStyles.textContent = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
+    }
+    
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+    }
+    
+    .toast-content {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+    
+    .toast-close {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        padding: var(--spacing-xs);
+        border-radius: var(--radius-sm);
+        transition: background 0.3s ease;
+    }
+    
+    .toast-close:hover {
+        background: rgba(255, 255, 255, 0.1);
+    }
+    
+    .message-content {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-sm);
+    }
+`;
+document.head.appendChild(toastStyles);
