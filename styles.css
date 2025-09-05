@@ -232,19 +232,6 @@ body {
     border-radius: var(--radius-xl);
 }
 
-.founders-image {
-    margin: var(--spacing-lg) 0;
-    text-align: center;
-}
-
-.restaurant-interior {
-    width: 100%;
-    max-width: 400px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-md);
-}
 
 /* Section Headers */
 .section-header {
@@ -330,25 +317,21 @@ body {
     justify-content: center;
 }
 
-.chef-image {
+.restaurant-interior-image {
     width: 100%;
     max-width: 400px;
     height: 300px;
-    background: linear-gradient(45deg, var(--light-gray), var(--lighter-gray));
     border-radius: var(--radius-xl);
     box-shadow: var(--shadow-lg);
-    position: relative;
     overflow: hidden;
+    position: relative;
 }
 
-.chef-image::before {
-    content: '👨‍🍳';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 3rem;
-    opacity: 0.3;
+.restaurant-interior-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-xl);
 }
 
 
@@ -931,9 +914,9 @@ body {
         height: 300px;
     }
     
-    .restaurant-interior {
+    .restaurant-interior-image {
         max-width: 100%;
-        height: 200px;
+        height: 250px;
     }
 }
 
