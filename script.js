@@ -153,9 +153,9 @@ class ReservationManager {
                     message = 'La hora es obligatoria';
                 } else {
                     const [hours] = value.split(':').map(Number);
-                                    if (hours < 7 || hours > 22) {
+                                    if (hours < 18 || hours > 23) {
                     isValid = false;
-                    message = 'Horario: 7:00 AM - 10:00 PM';
+                    message = 'Horario: 6:00 PM - 11:00 PM';
                 }
                 }
                 break;
@@ -223,7 +223,7 @@ class ReservationManager {
             
                     if (validation.isValid) {
             this.addReservation(reservation);
-            this.showMessage('🌿 ¡Reserva confirmada! Te esperamos en GreenFit Bistro', 'success');
+            this.showMessage('🍽️ ¡Reserva confirmada! Te esperamos en Messi y los Gordos', 'success');
             this.form.reset();
             this.animateSuccess();
         } else {
@@ -239,7 +239,7 @@ class ReservationManager {
         const submitBtn = this.form.querySelector('.btn-reserve');
         const originalText = submitBtn.innerHTML;
         
-        submitBtn.innerHTML = '<i class="fas fa-leaf"></i><span>¡Confirmado!</span>';
+        submitBtn.innerHTML = '<i class="fas fa-check"></i><span>¡Confirmado!</span>';
         submitBtn.style.background = 'var(--success-gradient)';
         
         setTimeout(() => {
@@ -302,10 +302,10 @@ class ReservationManager {
         const selectedTime = reservation.time;
         const [hours, minutes] = selectedTime.split(':').map(Number);
         
-        if (hours < 7 || hours > 22) {
+        if (hours < 18 || hours > 23) {
             return {
                 isValid: false,
-                message: '❌ El horario de reservas es de 7:00 AM a 10:00 PM'
+                message: '❌ El horario de reservas es de 6:00 PM a 11:00 PM'
             };
         }
 
@@ -627,11 +627,67 @@ class ReservationManager {
 document.addEventListener('DOMContentLoaded', () => {
     window.reservationManager = new ReservationManager();
     
+    // Inicializar navegación
+    initializeNavigation();
+    
     // Mostrar mensaje de bienvenida
     setTimeout(() => {
-        window.reservationManager.showMessage('🌿 ¡Bienvenido a GreenFit Bistro! Disfruta de nuestra comida saludable', 'info');
+        window.reservationManager.showMessage('🍽️ ¡Bienvenido a Messi y los Gordos! Disfruta de nuestra experiencia culinaria premium', 'info');
     }, 500);
 });
+
+// Función para inicializar la navegación
+function initializeNavigation() {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    // Toggle mobile menu
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+    }
+    
+    // Close mobile menu when clicking on a link
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    });
+    
+    // Smooth scrolling for anchor links
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const href = link.getAttribute('href');
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed navbar
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+        const navbar = document.querySelector('.navbar');
+        if (window.scrollY > 100) {
+            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.boxShadow = 'none';
+        }
+    });
+}
 
 // Función para limpiar todas las reservas (útil para testing)
 function clearAllReservations() {

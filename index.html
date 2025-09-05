@@ -3,322 +3,388 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema de Reservas - GreenFit Bistro</title>
+    <title>Messi y los Gordos - Restaurante Premium</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Background Elements -->
-    <div class="bg-animation">
-        <div class="floating-shapes">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-            <div class="shape shape-4"></div>
-            <div class="shape shape-5"></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>Messi y los Gordos</h1>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">Inicio</a></li>
+                <li><a href="#about">Nosotros</a></li>
+                <li><a href="#menu">Menú</a></li>
+                <li><a href="#reservations">Reservas</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
-    </div>
+    </nav>
 
-    <div class="container">
-        <header class="modern-header">
-            <div class="logo-container">
-                <div class="logo-icon">
-                    <i class="fas fa-leaf"></i>
-                </div>
-                <div class="logo-text">
-                    <h1>GreenFit Bistro</h1>
-                    <p class="subtitle">Comida Saludable & Deliciosa</p>
-                    <div class="status-indicator">
-                        <span class="status-dot"></span>
-                        <span class="status-text">Abierto - 7:00 AM - 10:00 PM</span>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Messi y los Gordos</h1>
+            <p class="hero-subtitle">Experiencia culinaria premium en el corazón de la ciudad</p>
+            <div class="hero-buttons">
+                <a href="#reservations" class="btn-primary">Reservar Mesa</a>
+                <a href="#menu" class="btn-secondary">Ver Menú</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="restaurant-image"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>Nuestra Historia</h2>
+                    <p>Desde 2015, Messi y los Gordos ha sido el destino culinario preferido de los amantes de la buena comida. Nuestro chef ejecutivo combina técnicas tradicionales con innovación moderna para crear experiencias gastronómicas únicas.</p>
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <h3>Premiado</h3>
+                            <p>Reconocido por la crítica gastronómica</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-leaf"></i>
+                            <h3>Ingredientes Frescos</h3>
+                            <p>Productos locales de la más alta calidad</p>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-users"></i>
+                            <h3>Experiencia Única</h3>
+                            <p>Ambiente elegante y servicio excepcional</p>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="header-actions">
-                <button class="action-btn" onclick="showRestaurantInfo()">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Info</span>
-                </button>
-                <button class="action-btn" onclick="showHealthBenefits()">
-                    <i class="fas fa-heart"></i>
-                    <span>Beneficios</span>
-                </button>
-                <button class="action-btn" onclick="showReservationStats()">
-                    <i class="fas fa-chart-line"></i>
-                    <span>Estadísticas</span>
-                </button>
-                <button class="action-btn secondary" onclick="clearAllReservations()">
-                    <i class="fas fa-trash-alt"></i>
-                    <span>Limpiar</span>
-                </button>
-            </div>
-        </header>
-
-        <main class="main-content">
-            <!-- Formulario de Reserva -->
-            <section class="reservation-form glass-card">
-                <div class="form-header">
-                    <h2><i class="fas fa-calendar-plus"></i> Reserva tu Mesa</h2>
-                    <p class="form-description">Disfruta de nuestra deliciosa comida saludable</p>
+                <div class="about-image">
+                    <div class="chef-image"></div>
                 </div>
-                
-                <form id="reservationForm" class="modern-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="clientName">
-                                <i class="fas fa-user"></i>
-                                Nombre del Cliente
-                            </label>
-                            <div class="input-container">
-                                <input type="text" id="clientName" name="clientName" placeholder="Ingrese su nombre completo" required>
-                                <div class="input-icon">
-                                    <i class="fas fa-user-check"></i>
-                                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <div class="section-header">
+                <h2>Nuestro Menú</h2>
+                <p>Platos cuidadosamente seleccionados para deleitar tu paladar</p>
+            </div>
+            <div class="menu-categories">
+                <div class="menu-category">
+                    <h3>Entradas</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image appetizer-1"></div>
+                            <div class="item-info">
+                                <h4>Ostras Frescas</h4>
+                                <p>Ostras del Pacífico con limón y pimienta</p>
+                                <span class="price">$18</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image appetizer-2"></div>
+                            <div class="item-info">
+                                <h4>Foie Gras</h4>
+                                <p>Foie gras con reducción de vino tinto</p>
+                                <span class="price">$24</span>
                             </div>
                         </div>
                     </div>
+                </div>
+                <div class="menu-category">
+                    <h3>Platos Principales</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image main-1"></div>
+                            <div class="item-info">
+                                <h4>Wagyu Beef</h4>
+                                <p>Carne Wagyu A5 con puré de trufa</p>
+                                <span class="price">$85</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image main-2"></div>
+                            <div class="item-info">
+                                <h4>Salmón Atlántico</h4>
+                                <p>Salmón con espárragos y salsa holandesa</p>
+                                <span class="price">$32</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-category">
+                    <h3>Postres</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="item-image dessert-1"></div>
+                            <div class="item-info">
+                                <h4>Tiramisú Clásico</h4>
+                                <p>Tiramisú tradicional con café italiano</p>
+                                <span class="price">$12</span>
+                            </div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="item-image dessert-2"></div>
+                            <div class="item-info">
+                                <h4>Chocolate Soufflé</h4>
+                                <p>Soufflé de chocolate con helado de vainilla</p>
+                                <span class="price">$14</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    <div class="form-row">
+    <!-- Reservations Section -->
+    <section id="reservations" class="reservations">
+        <div class="container">
+            <div class="section-header">
+                <h2>Reserva tu Mesa</h2>
+                <p>Garantiza tu lugar en una experiencia gastronómica inolvidable</p>
+            </div>
+
+            <div class="reservation-content">
+                <div class="reservation-form-container">
+                    <form id="reservationForm" class="reservation-form">
                         <div class="form-group">
-                            <label for="date">
-                                <i class="fas fa-calendar-alt"></i>
-                                Fecha de Reserva
-                            </label>
-                            <div class="input-container">
+                            <label for="clientName">Nombre Completo</label>
+                            <input type="text" id="clientName" name="clientName" placeholder="Tu nombre completo" required>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Fecha</label>
                                 <input type="date" id="date" name="date" required>
-                                <div class="input-icon">
-                                    <i class="fas fa-calendar-check"></i>
-                                </div>
                             </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="time">
-                                <i class="fas fa-clock"></i>
-                                Hora
-                            </label>
-                            <div class="input-container">
+                            <div class="form-group">
+                                <label for="time">Hora</label>
                                 <input type="time" id="time" name="time" required>
-                                <div class="input-icon">
-                                    <i class="fas fa-clock"></i>
-                                </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="people">
-                                <i class="fas fa-users"></i>
-                                Número de Personas
-                            </label>
-                            <div class="input-container">
-                                <input type="number" id="people" name="people" min="1" max="10" placeholder="1-10 personas" required>
-                                <div class="input-icon">
-                                    <i class="fas fa-user-friends"></i>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="table">
-                                <i class="fas fa-chair"></i>
-                                Selección de Mesa
-                            </label>
-                            <div class="input-container">
-                                <select id="table" name="table" required>
-                                    <option value="">Selecciona una mesa</option>
-                                    <option value="Mesa Verde">🌿 Mesa Verde - Terraza Natural</option>
-                                    <option value="Mesa Fit">💪 Mesa Fit - Zona Fitness</option>
-                                    <option value="Mesa Zen">🧘 Mesa Zen - Ambiente Relajado</option>
-                                    <option value="Mesa Fresh">🥗 Mesa Fresh - Vista al Jardín</option>
-                                    <option value="Mesa Vital">⚡ Mesa Vital - Energía Natural</option>
-                                    <option value="Mesa Pure">✨ Mesa Pure - Espacio Premium</option>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="people">Número de Personas</label>
+                                <select id="people" name="people" required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="1">1 persona</option>
+                                    <option value="2">2 personas</option>
+                                    <option value="3">3 personas</option>
+                                    <option value="4">4 personas</option>
+                                    <option value="5">5 personas</option>
+                                    <option value="6">6 personas</option>
+                                    <option value="7">7 personas</option>
+                                    <option value="8">8 personas</option>
                                 </select>
-                                <div class="input-icon">
-                                    <i class="fas fa-table"></i>
-                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="table">Tipo de Mesa</label>
+                                <select id="table" name="table" required>
+                                    <option value="">Seleccionar</option>
+                                    <option value="Mesa Interior">Mesa Interior</option>
+                                    <option value="Mesa Terraza">Mesa Terraza</option>
+                                    <option value="Mesa Privada">Mesa Privada</option>
+                                    <option value="Mesa VIP">Mesa VIP</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="form-buttons">
-                        <button type="submit" class="btn-reserve modern-btn">
-                            <i class="fas fa-check-circle"></i>
-                            <span>Confirmar Reserva</span>
+                        
+                        <button type="submit" class="btn-reserve">Reservar Mesa</button>
+                        <button type="button" class="btn-cancel-edit" onclick="reservationManager.cancelEdit()" style="display: none;">
+                            Cancelar Edición
                         </button>
-                        <button type="button" class="btn-cancel-edit modern-btn secondary" onclick="reservationManager.cancelEdit()" style="display: none;">
-                            <i class="fas fa-times-circle"></i>
-                            <span>Cancelar Edición</span>
-                        </button>
-                    </div>
-                </form>
-            </section>
-
-            <!-- Sección de Menú -->
-            <section class="menu-section glass-card">
-                <div class="menu-header">
-                    <h2><i class="fas fa-utensils"></i> Nuestro Menú Fit</h2>
-                    <p class="menu-description">Platos saludables y deliciosos para tu bienestar</p>
+                    </form>
                 </div>
                 
-                <div class="menu-categories">
-                    <div class="menu-category">
-                        <h3><i class="fas fa-sun"></i> Desayunos Energéticos</h3>
-                        <div class="menu-items">
-                            <div class="menu-item">
-                                <div class="item-info">
-                                    <h4>Bowl de Açaí Fit</h4>
-                                    <p>Açaí, granola, frutas frescas y miel natural</p>
-                                    <span class="calories">320 cal</span>
-                                </div>
-                                <span class="price">$12.99</span>
-                            </div>
-                            <div class="menu-item">
-                                <div class="item-info">
-                                    <h4>Avocado Toast Premium</h4>
-                                    <p>Pan integral, aguacate, tomate cherry y semillas</p>
-                                    <span class="calories">280 cal</span>
-                                </div>
-                                <span class="price">$9.99</span>
-                            </div>
-                            <div class="menu-item">
-                                <div class="item-info">
-                                    <h4>Smoothie Verde Power</h4>
-                                    <p>Espinaca, plátano, mango y proteína vegetal</p>
-                                    <span class="calories">180 cal</span>
-                                </div>
-                                <span class="price">$7.99</span>
-                            </div>
+                <div class="reservation-info">
+                    <h3>Información de Reservas</h3>
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horarios</h4>
+                            <p>Lunes - Domingo: 6:00 PM - 11:00 PM</p>
                         </div>
                     </div>
-
-                    <div class="menu-category">
-                        <h3><i class="fas fa-leaf"></i> Ensaladas Frescas</h3>
-                        <div class="menu-items">
-                            <div class="menu-item">
-                                <div class="item-info">
-                                    <h4>Ensalada Quinoa Power</h4>
-                                    <p>Quinoa, aguacate, tomate, pepino y aderezo fit</p>
-                                    <span class="calories">350 cal</span>
-                                </div>
-                                <span class="price">$14.99</span>
-                            </div>
-                            <div class="menu-item">
-                                <div class="item-info">
-                                    <h4>Caesar Fit</h4>
-                                    <p>Lechuga romana, pollo grill, parmesano y crutones integrales</p>
-                                    <span class="calories">420 cal</span>
-                                </div>
-                                <span class="price">$16.99</span>
-                            </div>
-                            <div class="menu-item">
-                                <div class="item-info">
-                                    <h4>Mediterránea Fresh</h4>
-                                    <p>Tomate, mozzarella, albahaca y aceite de oliva extra virgen</p>
-                                    <span class="calories">290 cal</span>
-                                </div>
-                                <span class="price">$13.99</span>
-                            </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Reservas por Teléfono</h4>
+                            <p>+1 (555) 123-4567</p>
                         </div>
                     </div>
-
-                    <div class="menu-category">
-                        <h3><i class="fas fa-fire"></i> Platos Principales</h3>
-                        <div class="menu-items">
-                            <div class="menu-item">
-                                <div class="item-info">
-                                    <h4>Salmón Teriyaki Fit</h4>
-                                    <p>Salmón grill, arroz integral, brócoli y salsa teriyaki light</p>
-                                    <span class="calories">480 cal</span>
-                                </div>
-                                <span class="price">$22.99</span>
-                            </div>
-                            <div class="menu-item">
-                                <div class="item-info">
-                                    <h4>Pollo a la Plancha</h4>
-                                    <p>Pechuga de pollo, quinoa, espinacas y tomates cherry</p>
-                                    <span class="calories">380 cal</span>
-                                </div>
-                                <span class="price">$18.99</span>
-                            </div>
-                            <div class="menu-item">
-                                <div class="item-info">
-                                    <h4>Bowl Buddha</h4>
-                                    <p>Vegetales asados, garbanzos, tahini y granos antiguos</p>
-                                    <span class="calories">420 cal</span>
-                                </div>
-                                <span class="price">$19.99</span>
-                            </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar"></i>
+                        <div>
+                            <h4>Política de Cancelación</h4>
+                            <p>Cancelación gratuita hasta 2 horas antes</p>
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
 
-            <!-- Sección de Mensajes -->
-            <section class="messages glass-card">
+    <!-- Reservations Management Section -->
+    <section class="reservations-management">
+        <div class="container">
+            <div class="management-header">
+                <h2>Gestión de Reservas</h2>
+                <div class="management-actions">
+                    <button class="btn-secondary" onclick="showReservationStats()">
+                        <i class="fas fa-chart-line"></i> Estadísticas
+                    </button>
+                    <button class="btn-secondary" onclick="exportReservations()">
+                        <i class="fas fa-download"></i> Exportar
+                    </button>
+                    <button class="btn-danger" onclick="clearAllReservations()">
+                        <i class="fas fa-trash"></i> Limpiar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Messages Section -->
+            <div class="messages-section">
                 <div class="messages-header">
-                    <h2><i class="fas fa-bell"></i> Notificaciones</h2>
+                    <h3>Notificaciones</h3>
                     <div class="message-count" id="messageCount">0</div>
                 </div>
                 <div id="messageContainer" class="message-container">
-                    <!-- Los mensajes se mostrarán aquí -->
+                    <!-- Messages will appear here -->
                 </div>
-            </section>
-
-            <!-- Lista de Reservas -->
-            <section class="reservations-list glass-card">
+            </div>
+            
+            <!-- Reservations List -->
+            <div class="reservations-list">
                 <div class="reservations-header">
-                    <div class="header-left">
-                        <h2><i class="fas fa-list-alt"></i> Reservas Registradas</h2>
-                        <div class="reservation-count" id="reservationCount">0 reservas</div>
-                    </div>
-                    <div class="header-actions">
-                        <button class="action-btn" onclick="showReservationStats()" title="Ver estadísticas">
-                            <i class="fas fa-chart-bar"></i>
-                            <span>Estadísticas</span>
-                        </button>
-                        <button class="action-btn secondary" onclick="exportReservations()" title="Exportar reservas">
-                            <i class="fas fa-download"></i>
-                            <span>Exportar</span>
-                        </button>
-                    </div>
+                    <h3>Reservas Activas</h3>
+                    <div class="reservation-count" id="reservationCount">0 reservas</div>
                 </div>
                 <div id="reservationsContainer" class="reservations-container">
-                    <!-- Las reservas se mostrarán aquí -->
+                    <!-- Reservations will appear here -->
                 </div>
-            </section>
-        </main>
+            </div>
+        </div>
+    </section>
 
-        <footer class="modern-footer">
-            <div class="footer-content">
-                <div class="footer-left">
-                    <div class="footer-logo">
-                        <i class="fas fa-leaf"></i>
-                        <span>GreenFit Bistro</span>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contacto</h2>
+                <p>Estamos aquí para hacer de tu experiencia algo memorable</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Dirección</h3>
+                            <p>123 Avenida Gourmet<br>Distrito Culinario, Ciudad</p>
+                        </div>
                     </div>
-                    <p>Comida Saludable & Deliciosa</p>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Teléfono</h3>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>reservas@messilosgordos.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h3>Horarios</h3>
+                            <p>Lunes - Domingo<br>6:00 PM - 11:00 PM</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="footer-right">
-                    <div class="footer-info">
-                        <p><i class="fas fa-clock"></i> Horario: 7:00 AM - 10:00 PM</p>
-                        <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
-                        <p><i class="fas fa-envelope"></i> reservas@greenfitbistro.com</p>
-                        <p><i class="fas fa-map-marker-alt"></i> 123 Wellness Street, Health City</p>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Tu email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Tu mensaje" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Messi y los Gordos</h3>
+                    <p>Experiencia culinaria premium desde 2015. Donde la tradición se encuentra con la innovación.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-yelp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Enlaces Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Inicio</a></li>
+                        <li><a href="#about">Nosotros</a></li>
+                        <li><a href="#menu">Menú</a></li>
+                        <li><a href="#reservations">Reservas</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Información</h4>
+                    <ul>
+                        <li><a href="#">Política de Privacidad</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Política de Cancelación</a></li>
+                        <li><a href="#">Accesibilidad</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Newsletter</h4>
+                    <p>Suscríbete para recibir ofertas especiales y eventos exclusivos.</p>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Tu email">
+                        <button type="submit">Suscribirse</button>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 GreenFit Bistro. Todos los derechos reservados.</p>
-                <div class="footer-links">
-                    <a href="#"><i class="fas fa-shield-alt"></i> Privacidad</a>
-                    <a href="#"><i class="fas fa-file-contract"></i> Términos</a>
-                    <a href="#"><i class="fas fa-question-circle"></i> Ayuda</a>
-                </div>
+                <p>&copy; 2024 Messi y los Gordos. Todos los derechos reservados.</p>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
 
     <!-- Loading Overlay -->
     <div id="loadingOverlay" class="loading-overlay">
